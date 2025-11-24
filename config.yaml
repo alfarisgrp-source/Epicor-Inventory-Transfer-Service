@@ -1,0 +1,14 @@
+epicor:
+  base_url: "https://uksouthdtpilot02.epicorsaas.com/saas523pilot/api/v2/odata/FTC"
+  token_url: "https://uksouthdtpilot02.epicorsaas.com/saas523pilot/api/v2/odata/FTC/Ice.LIB.TokenServiceSvc/GetAccessToken"
+  api_key: "QCx1lczgbNzd0PO0rDnnSvBz9Ch8yRcP2Gm5N8euDbFJM"
+  default_password: "FTCiRPA#2025"
+
+salesbuzz:
+  base_url: "https://rpa-api.alfarishost.com/salesBuz"
+
+
+logging:
+  file: "./logs/transfer.log"
+  level: "INFO"
+  encoding: "utf-8"

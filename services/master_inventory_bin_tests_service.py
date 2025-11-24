@@ -1,0 +1,19 @@
+import logging
+
+class MasterInventoryBinTestsService:
+    def __init__(self, api_client):
+        self.api = api_client
+        self.logger = logging.getLogger("MasterInventoryBinTestsService")
+
+    def execute(self, username, password, payload):
+        self.logger.info(f"[MasterInventoryBinTests] Request: {payload}")
+
+        response = self.api.post(
+            username,
+            password,
+            "Erp.BO.InvTransferSvc/MasterInventoryBinTests",
+            payload
+        )
+
+        self.logger.info(f"[MasterInventoryBinTests] Response: {response}")
+        return response

@@ -1,0 +1,17 @@
+[{
+  "_id": { "$oid": "69139efd3e47c7bdd4c2f969" },
+  "TransferNo": "TR1698025-00566",
+  "TranferDate": "2025-11-04",
+  "SalesmanNo": "16980",
+  "WarehouseID": "BXS-8595",
+  "salesManWarehouse": "Khamis",
+  "parts": [
+    {
+      "ItemNo": "NFTG-0001",
+      "UOMID": "CRTN6",
+      "OriginalQty": 5
+    }
+  ],
+  "status": "ready"
+}
+]
