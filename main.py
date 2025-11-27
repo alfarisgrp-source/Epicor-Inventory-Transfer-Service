@@ -2,7 +2,8 @@ from factory import ServiceFactory
 import yaml
 import logging
 import os
-
+from scheduler import start_scheduler
+from config import load_config
 
 def setup_logging(cfg):
     log_file = cfg["logging"]["file"]
@@ -36,22 +37,15 @@ def setup_logging(cfg):
     )
 
 def main():
-    # Load config
-    with open("config.yaml", "r") as f:
-        cfg = yaml.safe_load(f)
+    cfg = load_config()
 
-    # Setup logging before anything else
+    # Setup logging
     setup_logging(cfg)
 
-    logging.info("Starting inventory transfer process...")
+    logging.info("=== Inventory Transfer Scheduler Starting ===")
 
-    factory = ServiceFactory()
-    inv_transfer = factory.inventory_transfer()
-
-    # Run the entire transfer flow (token creation handled internally)
-    inv_transfer.start_transfer_flow(cfg["epicor"]["default_password"])
-
-    logging.info("[OK] All transfers processed successfully. Check logs/transfer.log for details.")
+    # Start APScheduler (runs forever)
+    start_scheduler()
 
 if __name__ == "__main__":
     main()

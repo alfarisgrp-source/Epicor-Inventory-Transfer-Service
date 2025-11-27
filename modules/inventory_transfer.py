@@ -11,6 +11,7 @@ from services.master_inventory_bin_tests_service import MasterInventoryBinTestsS
 from services.pre_commit_transfer_service import PreCommitTransferService
 from services.commit_transfer_service import CommitTransferService
 from services.api_get_inventory_transfer import SalesBuzzClient
+from services.update_status_service import UpdateStatusService
 from utils.sites import site_user_map
 
 
@@ -30,6 +31,7 @@ class InventoryTransfer:
         self.pre_commit = PreCommitTransferService(self.api)
         self.commit_transfer = CommitTransferService(self.api)
         self.salesbuzz = SalesBuzzClient()
+        self.update_status = UpdateStatusService()
 
         self.data_path = os.path.join("data", "transfer_data.json")
 
@@ -250,8 +252,12 @@ class InventoryTransfer:
             try:
                 self.process_transfer(username, default_password, record)
                 self.logger.info(f"[OK] Finished transfer {record.get('TransferNo')}")
+                self.update_status.update_status(record.get("TransferNo"), "completed")
             except Exception as e:
                 self.logger.exception(
                     f"[NO] Transfer {record.get('TransferNo')} failed: {str(e)}"
                 )
+                self.update_status.update_status(transfer_no, "issue")
+
+
 
