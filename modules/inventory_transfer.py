@@ -234,7 +234,7 @@ class InventoryTransfer:
 
         self.logger.info(f"Processing {len(records)} transfer records...")
 
-        for record in records[:1]:
+        for record in records:
             site = record.get("salesManWarehouse")
 
             if not site:
